@@ -7,13 +7,11 @@ const sendResponseError = (statusCode, msg, res) => {
 
 const verifyUser = async (req, res, next) => {
   const {authorization} = req.headers
-  if (!authorization) {
+  // another code smell was found here... 
+  if (!authorization || !authorization.startsWith('Bearer ')) {
     sendResponseError(400, 'You are not authorized ', res)
     return
-  } else if (!authorization.startsWith('Bearer ')) {
-    sendResponseError(400, 'You are not authorized ', res)
-    return
-  }
+  } 
 
   try {
     const payload = await verifyToken(authorization.split(' ')[1])

@@ -5,7 +5,9 @@ const {sendResponseError} = require('../middleware/middleware')
 const {checkPassword, newToken} = require('../utils/utility.function')
 
 const signUpUser = async (req, res) => {
-  const {email, fullName, password} = req.body
+  //  const {email, fullName, password} = req.body
+  // remove major smell issue found 
+  const { password} = req.body
   try {
     const hash = await bcrypt.hash(password, 8)
 
