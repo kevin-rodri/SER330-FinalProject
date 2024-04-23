@@ -20,7 +20,9 @@ const signUpUser = async (req, res) => {
 }
 
 const signInUser = async (req, res) => {
-  const {password, email} = req.body
+  let {password, email} = req.body
+  password = password.toString(); 
+  email = email.toString();
   console.log(req.body)
   try {
     const user = await User.findOne({email})
