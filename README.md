@@ -1,4 +1,4 @@
-# e-commerce-store
+# e-commerce-store - SER330 Final Project 
 
 **Free hosting use for deployement, so it might be happen response take much time and some time its down, So please run this project on local for checking.**
 
@@ -43,6 +43,9 @@
  - If you want to contribute this project then **feel free to make pull request** i love to merge your request
  - If You have suggestion or want new feature the feel free to **create an issue with label features**.
 
+## Credits 
+
+Link to Original Github repo: https://github.com/MohitSojitra/e-commerce-store
 
 #### If you like project then feel free to give Star 😅
 
