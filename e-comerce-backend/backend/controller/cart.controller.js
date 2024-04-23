@@ -12,11 +12,14 @@ const getCartProducts = async (req, res) => {
 }
 
 const addProductInCart = async (req, res) => {
-  const {productId, count} = req.body
+  let {productId, count} = req.body
+  // based on Sonar Cloud feedback 
+  productId = productId.toString();
+  count = count.toString()
   try {
     const cart = await Cart.findOneAndUpdate(
       {productId},
-      {productId, count, userId: req.user._id},
+      {productId, count, userId: req.user._id.toString()},
       {upsert: true},
     )
 

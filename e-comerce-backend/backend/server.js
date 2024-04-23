@@ -6,7 +6,7 @@ const cartRoutes = require("./routes/cartRoutes");
 const { connectDB } = require("./config/db");
 const cors = require("cors");
 
-connectDB();
+ connectDB();
 
 const app = express();
 
