@@ -7,9 +7,10 @@ const {checkPassword, newToken} = require('../utils/utility.function')
 const signUpUser = async (req, res) => {
   //  const {email, fullName, password} = req.body
   // remove major smell issue found 
-  const { password} = req.body
+  let { password} = req.body
+  let passwordCreated = String(password);
   try {
-    const hash = await bcrypt.hash(password, 8)
+    const hash = await bcrypt.hash(passwordCreated, 8)
 
     await User.create({...req.body, password: hash})
     res.status(201).send('Sucessfully account opened ')
@@ -23,25 +24,27 @@ const signUpUser = async (req, res) => {
 
 const signInUser = async (req, res) => {
   let {password, email} = req.body
-  password = password.toString(); 
-  email = email.toString();
+  let userEmail = String(email);
+  let userPassword = String(password);
+
   console.log(req.body)
   try {
-    const user = await User.findOne({email})
+    const user = await User.findOne({email: userEmail})
     if (!!!user) {
-      sendResponseError(400, 'You have to Sign up first !', res)
+      return sendResponseError(400, 'You have to Sign up first !', res)
     }
 
-    const same = await checkPassword(password, user.password)
+    const same = await checkPassword(userPassword, user.password)
     if (same) {
       let token = newToken(user)
-      res.status(200).send({status: 'ok', token})
-      return
+      console.log({status: 'ok', token}); 
+     return res.status(200).send({status: 'ok', token})
     }
+    console.log('InValid password !', res);
     sendResponseError(400, 'InValid password !', res)
   } catch (err) {
     console.log('EROR', err)
-    sendResponseError(500, `Error ${err}`, res)
+    return sendResponseError(500, `Error ${err}`, res)
   }
 }
 

@@ -19,7 +19,7 @@ const addProductInCart = async (req, res) => {
   try {
     const cart = await Cart.findOneAndUpdate(
       {productId},
-      {productId, count, userId: req.user._id.toString()},
+      {productId, count, userId: req.user._id},
       {upsert: true},
     )
 
