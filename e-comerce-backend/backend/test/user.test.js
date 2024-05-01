@@ -35,7 +35,7 @@ describe("User TestCases", () => {
     test("POST /api/user/signup", async () => {
         const response = await request(app).post("/api/user/signup").send({
             email: "kevin.rodriguez@quinnipiac.edu",
-            password: "newpassword",
+            password: "yesIdid",
             fullName: "Kevin Rodriguez"
         });
         expect(response.status).toBe(201);
@@ -57,7 +57,7 @@ describe("User TestCases", () => {
     test("POST /api/user/signin - ERROR", async () => {
         const signInResponse = await request(app).post("/api/user/signin").send({
             email: user.email,
-            password: "wrongPassword"
+            password: "whatswrongwithme"
         });
         expect(signInResponse.status).toBe(400);
         expect(signInResponse.text).toBe('InValid password !');
@@ -67,7 +67,7 @@ describe("User TestCases", () => {
     test("POST /api/user/signin - ACCOUNT DNE", async () => {
         const signInResponse = await request(app).post("/api/user/signin").send({
             email: "bill.smith@quinnipiac.edu",
-            password: "password123", 
+            password: "pleasedontwork", 
         });
         expect(signInResponse.status).toBe(400);
         expect(signInResponse.text).toBe('You have to Sign up first !');
