@@ -1,3 +1,10 @@
 e-comerce-backend/node_modules
 e-comerce-frontend/node_modules
 e-comerce-frontend/dist
+node_modules/
+frontend/node_modules/
+*.zip
+.DS_Store
+.idea
+notes.md
+.variables.env
